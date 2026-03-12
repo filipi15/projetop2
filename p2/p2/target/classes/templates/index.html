@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groove Store – Vinis &amp; CDs</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">Groove Store</a>
+    <ul class="nav-links">
+      <li><a href="/" class="active">Início</a></li>
+      <li><a href="/catalogo">Catálogo</a></li>
+      <li><a href="#">Novidades</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">✦ Vinis &amp; CDs Selecionados</span>
+      <h1 class="hero-title">O Som que<br/><em>Nunca Envelhece</em></h1>
+      <p class="hero-subtitle">Curadoria especial em Pop Internacional — dos clássicos atemporais às joias contemporâneas. Cada disco conta uma história.</p>
+      <a href="/catalogo" class="hero-cta">
+        Ver Catálogo
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- MARQUEE STRIP -->
+  <div class="strip">
+    <div class="strip-inner">
+      <span>Pop Internacional</span><span>✦</span>
+      <span>Vinis 180g</span><span>✦</span>
+      <span>CDs Originais</span><span>✦</span>
+      <span>Edições Especiais</span><span>✦</span>
+      <span>Frete Grátis acima de R$299</span><span>✦</span>
+      <span>Pop Internacional</span><span>✦</span>
+      <span>Vinis 180g</span><span>✦</span>
+      <span>CDs Originais</span><span>✦</span>
+      <span>Edições Especiais</span><span>✦</span>
+      <span>Frete Grátis acima de R$299</span><span>✦</span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="features-header">
+      <div>
+        <p class="section-label">Por que a Groove Store</p>
+        <h2 class="features-title">Uma experiência para quem leva o som a sério</h2>
+      </div>
+      <p class="features-desc">Mais do que uma loja, somos um ponto de encontro para amantes de música. Cada peça no nosso acervo é escolhida com cuidado.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="card-number">01</span>
+        <h3 class="card-title">Curadoria Especializada</h3>
+        <p class="card-text">Selecionamos cada álbum com atenção à qualidade artística e ao estado de conservação. Nada entra no acervo por acaso.</p>
+      </div>
+      <div class="card">
+        <span class="card-number">02</span>
+        <h3 class="card-title">Edições Raras &amp; Importadas</h3>
+        <p class="card-text">Trabalhamos com distribuidoras internacionais para trazer prensagens limitadas, box sets e lançamentos exclusivos.</p>
+      </div>
+      <div class="card">
+        <span class="card-number">03</span>
+        <h3 class="card-title">Entrega Segura</h3>
+        <p class="card-text">Embalagem reforçada e rastreamento em tempo real. Seu disco chega em perfeito estado, pronto para girar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ALBUMS -->
+  <section class="albums">
+    <div class="albums-header">
+      <div>
+        <p class="section-label">Destaques da Semana</p>
+        <h2 class="albums-title">Álbuns em Evidência</h2>
+      </div>
+      <a href="/catalogo" class="see-all">Ver todos →</a>
+    </div>
+    <div class="album-grid">
+
+      <div class="album-card">
+        <div class="album-cover">
+          <div class="album-cover-inner"><div class="album-art a1"></div></div>
+          <span class="album-badge">Novo</span>
+          <span class="album-format">Vinil</span>
+        </div>
+        <p class="album-artist">Taylor Swift</p>
+        <h3 class="album-name">The Tortured Poets Department</h3>
+        <p class="album-price">R$ 289,90</p>
+      </div>
+
+      <div class="album-card">
+        <div class="album-cover">
+          <div class="album-cover-inner"><div class="album-art a2"></div></div>
+          <span class="album-badge">Clássico</span>
+          <span class="album-format">Vinil</span>
+        </div>
+        <p class="album-artist">Madonna</p>
+        <h3 class="album-name">Like a Prayer</h3>
+        <p class="album-price">R$ 349,90</p>
+      </div>
+
+      <div class="album-card">
+        <div class="album-cover">
+          <div class="album-cover-inner"><div class="album-art a3"></div></div>
+          <span class="album-format">CD</span>
+        </div>
+        <p class="album-artist">Dua Lipa</p>
+        <h3 class="album-name">Future Nostalgia</h3>
+        <p class="album-price">R$ 79,90</p>
+      </div>
+
+      <div class="album-card">
+        <div class="album-cover">
+          <div class="album-cover-inner"><div class="album-art a4"></div></div>
+          <span class="album-badge">Edição Ltda.</span>
+          <span class="album-format">Vinil</span>
+        </div>
+        <p class="album-artist">Michael Jackson</p>
+        <h3 class="album-name">Thriller – 40th Anniversary</h3>
+        <p class="album-price">R$ 529,90</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <section class="banner">
+    <div class="banner-vinyl">
+      <div class="banner-vinyl-inner">
+        <div class="banner-vinyl-label">
+          <span>GS</span>
+        </div>
+      </div>
+    </div>
+    <div class="banner-content">
+      <p class="section-label">Acervo Completo</p>
+      <h2 class="banner-title">Mais de 2.000 títulos esperando por você</h2>
+      <p class="banner-text">Pop, Synth-Pop, New Wave, Dance, R&amp;B — mergulhe no nosso catálogo e descubra o seu próximo disco favorito.</p>
+      <a href="/catalogo" class="banner-cta">Explorar Catálogo</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Groove Store</div>
+        <p class="footer-tagline">O som que nunca envelhece.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Loja</h4>
+          <ul>
+            <li><a href="/catalogo">Catálogo</a></li>
+            <li><a href="#">Novidades</a></li>
+            <li><a href="#">Promoções</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Info</h4>
+          <ul>
+            <li><a href="#">Sobre nós</a></li>
+            <li><a href="#">Trocas e Devoluções</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Groove Store. Todos os direitos reservados.</span>
+      <span class="footer-copy">Feito com ♪ para amantes de música</span>
+    </div>
+  </footer>
+
+</body>
+</html>
