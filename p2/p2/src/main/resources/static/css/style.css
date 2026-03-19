@@ -1,3 +1,8 @@
+/* ═══════════════════════════════════════════
+   GROOVE STORE — style.css
+   Compartilhado por index.html e catalogo.html
+   ═══════════════════════════════════════════ */
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -81,6 +86,39 @@ nav.sticky {
 
 .nav-links a:hover::after,
 .nav-links a.active::after { right: 0; }
+
+.nav-auth {
+  display: flex; align-items: center; gap: 12px;
+}
+
+.nav-auth-login {
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color .3s;
+}
+
+.nav-auth-login:hover { color: var(--gold); }
+
+.nav-auth-register {
+  color: var(--black);
+  background: var(--gold);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  transition: background .3s, transform .2s;
+}
+
+.nav-auth-register:hover {
+  background: #deba5c;
+  transform: translateY(-1px);
+}
 
 /* ══════════════════════════════
    INDEX — HERO
@@ -994,4 +1032,368 @@ footer {
   .products-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
   .footer-inner { flex-direction: column; gap: 24px; }
   .footer-nav { flex-wrap: wrap; gap: 16px; }
+}
+
+/* ══════════════════════════════
+   AUTH — LOGIN & CADASTRO
+   ══════════════════════════════ */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  background: var(--warm);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Lado esquerdo decorativo */
+.auth-deco {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  position: relative;
+  overflow: hidden;
+  background: var(--black);
+}
+
+.auth-deco::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(200,168,75,.08) 0%, transparent 70%);
+}
+
+.auth-deco-ring {
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,168,75,.12);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  animation: spin 50s linear infinite;
+}
+
+.auth-deco-ring::before {
+  content: '';
+  position: absolute; inset: 50px;
+  border-radius: 50%;
+  border: 1px dashed rgba(200,168,75,.1);
+}
+
+.auth-deco-ring::after {
+  content: '';
+  position: absolute; inset: 110px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,168,75,.06);
+}
+
+.auth-deco-vinyl {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #0a0a0a, #1c1c1c, #0f0f0f, #252525, #0a0a0a);
+  box-shadow: 0 0 60px rgba(200,168,75,.12);
+  display: flex; align-items: center; justify-content: center;
+  animation: spin 50s linear infinite reverse;
+}
+
+.auth-deco-label {
+  width: 38%; height: 38%;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.auth-deco-label span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: var(--black);
+}
+
+.auth-deco-text {
+  position: absolute;
+  bottom: 60px;
+  text-align: center;
+}
+
+.auth-deco-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.auth-deco-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.auth-deco-sub {
+  font-size: 13px;
+  color: rgba(245,240,232,.35);
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+/* Lado direito — formulário */
+.auth-form-side {
+  width: 480px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 56px;
+  background: var(--cream);
+  position: relative;
+  z-index: 1;
+}
+
+.auth-form-side::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+}
+
+.auth-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 48px;
+}
+
+.auth-eyebrow {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.auth-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: var(--warm);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  font-size: 13px;
+  color: var(--mid);
+  font-weight: 300;
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+
+.auth-subtitle a {
+  color: var(--rust);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .2s;
+}
+
+.auth-subtitle a:hover { color: var(--gold); }
+
+/* Campos */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(58,53,48,.25);
+  padding: 10px 0;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--warm);
+  outline: none;
+  transition: border-color .25s;
+}
+
+.form-group input::placeholder {
+  color: rgba(58,53,48,.3);
+  font-weight: 300;
+}
+
+.form-group input:focus {
+  border-bottom-color: var(--gold);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Input com ícone de olho (senha) */
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap input {
+  padding-right: 32px;
+}
+
+.toggle-pw {
+  position: absolute;
+  right: 0; bottom: 10px;
+  background: none; border: none;
+  cursor: pointer;
+  color: rgba(58,53,48,.4);
+  padding: 0;
+  transition: color .2s;
+  display: flex; align-items: center;
+}
+
+.toggle-pw:hover { color: var(--gold); }
+
+/* Checkbox "lembrar" */
+.form-check {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--mid);
+}
+
+.form-check input { display: none; }
+
+.form-check-box {
+  width: 16px; height: 16px;
+  border: 1.5px solid rgba(58,53,48,.3);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background .2s, border-color .2s;
+}
+
+.form-check input:checked ~ .form-check-box {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.form-check input:checked ~ .form-check-box::after {
+  content: '✓';
+  font-size: 10px;
+  color: var(--black);
+}
+
+.form-forgot {
+  font-size: 12px;
+  color: var(--rust);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.form-forgot:hover { color: var(--gold); }
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+/* Botão principal */
+.btn-auth {
+  width: 100%;
+  background: var(--warm);
+  color: var(--cream);
+  border: none;
+  padding: 15px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .3s, transform .2s;
+  margin-bottom: 24px;
+}
+
+.btn-auth:hover {
+  background: var(--gold);
+  color: var(--black);
+  transform: translateY(-2px);
+}
+
+.auth-divider {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 24px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(58,53,48,.15);
+}
+
+.auth-divider span {
+  font-size: 11px;
+  color: rgba(58,53,48,.35);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 13px;
+  color: var(--mid);
+}
+
+.auth-switch a {
+  color: var(--rust);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .2s;
+}
+
+.auth-switch a:hover { color: var(--gold); }
+
+/* Barra de força da senha */
+.pw-strength {
+  margin-top: 8px;
+  display: flex; gap: 4px;
+}
+
+.pw-strength-bar {
+  flex: 1; height: 2px;
+  background: rgba(58,53,48,.15);
+  transition: background .3s;
+}
+
+.pw-strength-bar.weak   { background: var(--rust); }
+.pw-strength-bar.medium { background: var(--gold); }
+.pw-strength-bar.strong { background: #4caf50; }
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .auth-deco { display: none; }
+  .auth-form-side {
+    width: 100%;
+    padding: 48px 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-form-side { padding: 40px 24px; }
+  .form-row { grid-template-columns: 1fr; }
 }
