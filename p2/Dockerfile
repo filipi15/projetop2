@@ -11,4 +11,4 @@ RUN chmod 777 mvnw
 
 RUN ./mvnw package -DskipTests
 
-CMD [“java”, “-jar”, “target/p2-0.0.1-SNAPSHOT.jar”]
+CMD ["java", "-jar", "target/p2-0.0.1-SNAPSHOT.jar"]
