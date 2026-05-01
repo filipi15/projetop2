@@ -44,7 +44,7 @@ public class PostController {
     public String postCadastro(@ModelAttribute User user, Model model) {
         UserService cs = context.getBean(UserService.class);
 		cs.inserirUser(user);
-        return "redirect:/login";
+        return "redirect:/listaUsuarios";
     }
 
     @GetMapping("/listaUsuarios")
