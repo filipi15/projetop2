@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${produto.album} + ' – Groove Store'">Detalhes – Groove Store</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <div class="nav-overlay"></div>
+
+  <nav class="sticky">
+    <a href="/" class="nav-logo">Groove Store</a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+      <li><a href="/">Início</a></li>
+      <li><a href="/catalogo" class="active">Catálogo</a></li>
+      <li sec:authorize="hasAuthority('admin')"><a href="/listaUsuarios">Usuários</a></li>
+    </ul>
+    <div class="nav-auth">
+      <span sec:authorize="!isAuthenticated()">
+        <a href="/login" class="nav-auth-login">Entrar</a>
+        <a href="/cadastro" class="nav-auth-register">Cadastrar</a>
+      </span>
+      <span sec:authorize="isAuthenticated()">
+        <a sec:authorize="hasAuthority('admin')" href="/produto/listar" class="nav-auth-login">Produtos</a>
+        <form th:action="@{/logout}" method="post" style="display:inline">
+          <button type="submit" class="nav-auth-register" style="border:none;cursor:pointer">Sair</button>
+        </form>
+      </span>
+    </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a href="/">Início</a>
+      <span>›</span>
+      <a href="/catalogo">Catálogo</a>
+      <span>›</span>
+      <span th:text="${produto.album}">Álbum</span>
+    </div>
+  </div>
+
+  <div class="detail-layout">
+    <div class="detail-cover">
+      <img class="detail-img" th:src="${produto.imagem}" th:alt="${produto.album}"/>
+    </div>
+    <div class="detail-info">
+      <span class="detail-format" th:text="${produto.formato}">Vinil</span>
+      <p class="detail-artist" th:text="${produto.artista}">Artista</p>
+      <h1 class="detail-album" th:text="${produto.album}">Álbum</h1>
+      <p class="detail-price" th:text="'R$ ' + ${produto.preco}">R$ 0,00</p>
+      <div class="detail-meta">
+        <p><strong>Gênero:</strong> <span th:text="${produto.genero}"></span></p>
+        <p><strong>Ano:</strong> <span th:text="${produto.ano}"></span></p>
+        <p><strong>Formato:</strong> <span th:text="${produto.formato}"></span></p>
+      </div>
+      <button class="hero-cta detail-cta">Adicionar ao carrinho</button>
+      <a class="detail-back" th:href="@{/catalogo}"><span class="detail-back-arrow">←</span> Voltar ao catálogo</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Groove Store. Todos os direitos reservados.</span>
+      <span class="footer-copy">Feito com ♪ para amantes de música</span>
+    </div>
+  </footer>
+
+
+  <script>
+    (function(){
+      var t = document.querySelector('.nav-toggle');
+      var o = document.querySelector('.nav-overlay');
+      function close(){ document.body.classList.remove('nav-open'); }
+      if(t){ t.addEventListener('click', function(){ document.body.classList.toggle('nav-open'); }); }
+      if(o){ o.addEventListener('click', close); }
+      document.querySelectorAll('.nav-menu a').forEach(function(a){ a.addEventListener('click', close); });
+    })();
+  </script>
+</body>
+</html>

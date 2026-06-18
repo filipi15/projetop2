@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo – Groove Store</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <div class="nav-overlay"></div>
+
+  <!-- NAV (sticky na página de catálogo) -->
+  <nav class="sticky">
+    <a href="/" class="nav-logo">Groove Store</a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+      <li><a href="/">Início</a></li>
+      <li><a href="/catalogo" class="active">Catálogo</a></li>
+      <li sec:authorize="hasAuthority('admin')"><a href="/listaUsuarios">Usuários</a></li>
+    </ul>
+    <div class="nav-auth">
+      <span sec:authorize="!isAuthenticated()">
+        <a href="/login" class="nav-auth-login">Entrar</a>
+        <a href="/cadastro" class="nav-auth-register">Cadastrar</a>
+      </span>
+      <span sec:authorize="isAuthenticated()">
+        <a sec:authorize="hasAuthority('admin')" href="/produto/listar" class="nav-auth-login">Produtos</a>
+        <form th:action="@{/logout}" method="post" style="display:inline">
+          <button type="submit" class="nav-auth-register" style="border:none;cursor:pointer">Sair</button>
+        </form>
+      </span>
+    </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a href="/">Início</a>
+      <span>›</span>
+      <span>Catálogo</span>
+    </div>
+    <h1 class="page-title">Catálogo Completo</h1>
+    <p class="page-count">Exibindo 12 de 247 produtos</p>
+  </div>
+
+  <!-- CATALOG LAYOUT -->
+  <div class="catalog-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="filter-group">
+        <p class="filter-title">Formato</p>
+        <div class="filter-options">
+          <label class="filter-opt">
+            <input type="checkbox" checked/>
+            <div class="filter-check"></div>
+            <span>Vinil (LP)</span>
+          </label>
+          <label class="filter-opt">
+            <input type="checkbox" checked/>
+            <div class="filter-check"></div>
+            <span>CD</span>
+          </label>
+          <label class="filter-opt">
+            <input type="checkbox"/>
+            <div class="filter-check"></div>
+            <span>Box Set</span>
+          </label>
+          <label class="filter-opt">
+            <input type="checkbox"/>
+            <div class="filter-check"></div>
+            <span>Single (7")</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <p class="filter-title">Gênero</p>
+        <div class="filter-options">
+          <label class="filter-opt">
+            <input type="checkbox" checked/>
+            <div class="filter-check"></div>
+            <span>Pop Internacional</span>
+          </label>
+          <label class="filter-opt">
+            <input type="checkbox"/>
+            <div class="filter-check"></div>
+            <span>Synth-Pop</span>
+          </label>
+          <label class="filter-opt">
+            <input type="checkbox"/>
+            <div class="filter-check"></div>
+            <span>Dance / Eletrônico</span>
+          </label>
+          <label class="filter-opt">
+            <input type="checkbox"/>
+            <div class="filter-check"></div>
+            <span>R&amp;B / Soul</span>
+          </label>
+          <label class="filter-opt">
+            <input type="checkbox"/>
+            <div class="filter-check"></div>
+            <span>New Wave</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <p class="filter-title">Disponibilidade</p>
+        <div class="filter-options">
+          <label class="filter-opt">
+            <input type="checkbox" checked/>
+            <div class="filter-check"></div>
+            <span>Em estoque</span>
+          </label>
+          <label class="filter-opt">
+            <input type="checkbox"/>
+            <div class="filter-check"></div>
+            <span>Pré-venda</span>
+          </label>
+          <label class="filter-opt">
+            <input type="checkbox"/>
+            <div class="filter-check"></div>
+            <span>Edição Limitada</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <p class="filter-title">Faixa de Preço</p>
+        <div class="price-range">
+          <input class="price-input" type="text" placeholder="R$ 0"/>
+          <span class="price-sep">—</span>
+          <input class="price-input" type="text" placeholder="R$ 999"/>
+        </div>
+        <button class="filter-apply">Aplicar Filtros</button>
+      </div>
+
+    </aside>
+
+    <!-- PRODUCTS -->
+    <main class="products-area">
+
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <span class="tag active">Todos</span>
+        </div>
+        <select class="sort-select">
+          <option>Mais Relevantes</option>
+          <option>Menor Preço</option>
+          <option>Maior Preço</option>
+          <option>Lançamento</option>
+        </select>
+      </div>
+
+      <div class="products-grid">
+
+        <div class="product" th:each="produto : ${produtos}">
+          <div class="product-cover">
+            <div class="product-cover-inner">
+              <img class="product-img" th:src="${produto.imagem}" th:alt="${produto.album}"/>
+            </div>
+            <span class="product-format" th:text="${produto.formato}">Vinil</span>
+            <div class="product-overlay">
+              <a class="btn-add" th:href="@{'/produto/' + ${produto.id}}">Ver detalhes</a>
+            </div>
+          </div>
+          <p class="product-artist" th:text="${produto.artista}">Artista</p>
+          <h3 class="product-name" th:text="${produto.album}">Álbum</h3>
+          <div class="product-meta">
+            <span class="product-price" th:text="'R$ ' + ${produto.preco}">R$ 0,00</span>
+            <span class="product-year" th:text="${produto.ano}">2024</span>
+          </div>
+        </div>
+
+      </div><!-- /products-grid -->
+
+      <!-- PAGINATION -->
+      <div class="pagination">
+        <button class="page-btn">&#8249;</button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <span>…</span>
+        <button class="page-btn">21</button>
+        <button class="page-btn">&#8250;</button>
+      </div>
+
+    </main>
+  </div><!-- /catalog-layout -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Groove Store</div>
+      <nav class="footer-nav">
+        <a href="/">Início</a>
+        <a href="/catalogo">Catálogo</a>
+        <a href="#">Novidades</a>
+        <a href="#">Contato</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Groove Store. Todos os direitos reservados.</span>
+      <span class="footer-copy">Feito com ♪ para amantes de música</span>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+      });
+    });
+  </script>
+
+
+  <script>
+    (function(){
+      var t = document.querySelector('.nav-toggle');
+      var o = document.querySelector('.nav-overlay');
+      function close(){ document.body.classList.remove('nav-open'); }
+      if(t){ t.addEventListener('click', function(){ document.body.classList.toggle('nav-open'); }); }
+      if(o){ o.addEventListener('click', close); }
+      document.querySelectorAll('.nav-menu a').forEach(function(a){ a.addEventListener('click', close); });
+    })();
+  </script>
+</body>
+</html>

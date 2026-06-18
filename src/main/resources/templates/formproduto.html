@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Produto – Groove Store</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <div class="nav-overlay"></div>
+
+  <nav class="sticky">
+    <a href="/" class="nav-logo">Groove Store</a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-menu">
+            <ul class="nav-links">
+      <li><a href="/">Início</a></li>
+      <li><a href="/catalogo">Catálogo</a></li>
+      <li sec:authorize="hasAuthority('admin')"><a href="/listaUsuarios">Usuários</a></li>
+    </ul>
+        <div class="nav-auth">
+      <a href="/produto/listar" class="nav-auth-login active">Produtos</a>
+      <form th:action="@{/logout}" method="post" style="display:inline">
+        <button type="submit" class="nav-auth-register" style="border:none;cursor:pointer">Sair</button>
+      </form>
+    </div>
+    </div>
+  </nav>
+
+  <div class="form-page">
+    <div class="form-card">
+      <div class="breadcrumb">
+        <a href="/produto/listar">Produtos</a>
+        <span>›</span>
+        <span>Novo</span>
+      </div>
+      <h1 class="page-title">Cadastrar Produto</h1>
+
+      <form action="#" th:action="@{/produto}" method="post" th:object="${produto}">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Artista</label>
+            <input type="text" th:field="*{artista}" required>
+          </div>
+          <div class="form-group">
+            <label>Álbum</label>
+            <input type="text" th:field="*{album}" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Formato</label>
+            <input type="text" th:field="*{formato}" placeholder="Vinil / CD" required>
+          </div>
+          <div class="form-group">
+            <label>Gênero</label>
+            <input type="text" th:field="*{genero}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Preço</label>
+            <input type="text" th:field="*{preco}" placeholder="289,90" required>
+          </div>
+          <div class="form-group">
+            <label>Ano</label>
+            <input type="text" th:field="*{ano}" placeholder="2024">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>URL da imagem (capa)</label>
+          <input type="text" th:field="*{imagem}" placeholder="https://...">
+        </div>
+        <button type="submit" class="btn-auth" style="margin-top:8px">Cadastrar</button>
+      </form>
+      <p style="margin-top:18px"><a th:href="@{/produto/listar}">Voltar</a></p>
+    </div>
+  </div>
+
+
+  <script>
+    (function(){
+      var t = document.querySelector('.nav-toggle');
+      var o = document.querySelector('.nav-overlay');
+      function close(){ document.body.classList.remove('nav-open'); }
+      if(t){ t.addEventListener('click', function(){ document.body.classList.toggle('nav-open'); }); }
+      if(o){ o.addEventListener('click', close); }
+      document.querySelectorAll('.nav-menu a').forEach(function(a){ a.addEventListener('click', close); });
+    })();
+  </script>
+</body>
+</html>
